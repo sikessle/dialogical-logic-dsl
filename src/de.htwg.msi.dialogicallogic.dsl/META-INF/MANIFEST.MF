@@ -6,6 +6,26 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: de.htwg.msi.dialogicallogic.dsl; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
- org.eclipse.equinox.common;bundle-version="3.5.0"
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.htwg.msi.dialogicallogic.dsl,
+ de.htwg.msi.dialogicallogic.dsl.services,
+ de.htwg.msi.dialogicallogic.dsl.logic,
+ de.htwg.msi.dialogicallogic.dsl.logic.impl,
+ de.htwg.msi.dialogicallogic.dsl.logic.util,
+ de.htwg.msi.dialogicallogic.dsl.serializer,
+ de.htwg.msi.dialogicallogic.dsl.parser.antlr,
+ de.htwg.msi.dialogicallogic.dsl.parser.antlr.internal,
+ de.htwg.msi.dialogicallogic.dsl.validation,
+ de.htwg.msi.dialogicallogic.dsl.scoping,
+ de.htwg.msi.dialogicallogic.dsl.generator,
+ de.htwg.msi.dialogicallogic.dsl.formatting
+

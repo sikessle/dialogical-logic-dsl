@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.htwg.de/msi/dialogicallogic/dsl/Logic" 
+       class = "de.htwg.msi.dialogicallogic.dsl.logic.LogicPackage"
+       genModel = "model/generated/Logic.genmodel" /> 
+	
+  </extension>
+
+
+
+</plugin>
