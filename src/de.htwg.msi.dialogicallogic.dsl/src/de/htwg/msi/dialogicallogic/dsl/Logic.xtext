@@ -1,0 +1,9 @@
+grammar de.htwg.msi.dialogicallogic.dsl.Logic with org.eclipse.xtext.common.Terminals
+
+generate logic "http://www.htwg.de/msi/dialogicallogic/dsl/Logic"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
