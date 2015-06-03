@@ -31,7 +31,12 @@ Umfang der Grammatik:
 
 Assozivität: Von links nach rechts gelten die Vorrangsregeln. Andernfalls muss mit «» geklammert werden.
 
-- Elemtaraussage= «elementaraussage»
+Jedes Keyword (und, oder etc.) sind innerhalb der Elemtaraussage nicht erlaubt.
+
+Der Punkt . begrenzt einzelne Aussagen.
+
+- Aussage= «aussage» und|oder etc. «aussage».
+- Elementaraussage= «elementaraussage»
 - Konjunktion= «elementaraussage» und «elementaraussage»
 - Adjunktion= «elementaraussage» oder «elementaraussage»
 - Subjunktion (Implikation)= wenn|es gilt «elementaraussage» deshalb|darauf folgt|darum|daher|dann «elementaraussage»

@@ -3,7 +3,41 @@ grammar de.htwg.msi.dialogicallogic.dsl.Logic with org.eclipse.xtext.common.Term
 generate logic "http://www.htwg.de/msi/dialogicallogic/dsl/Logic"
 
 Model:
-	greetings+=Greeting*;
+	statements += Statement+;
 	
-Greeting:
-	'Hello' name=ID '!';
+TEXT:
+	 (ID | WS)+
+;
+
+Statement:
+	(AtomicStatement |
+	ConnectedStatement |
+	Subjunction |
+	OneQuantor |
+	AllQuantor) '.'
+;
+
+// TODO: needs a content assist provider
+AtomicStatement:
+	'«' text=TEXT '»'
+;
+
+ConnectedStatement:
+	(left=AtomicStatement 'und' right=(AtomicStatement|ConnectedStatement)) |
+	(left=AtomicStatement 'oder' right=(AtomicStatement|ConnectedStatement))
+;
+
+Subjunction:
+	'wenn' if=(AtomicStatement|ConnectedStatement) 'dann' then=(AtomicStatement|ConnectedStatement)
+;
+
+OneQuantor:
+	'für-mindestens-'('einen'|'eine') oneQuantorVariable=TEXT 'gilt:' concernedOneStatement=(AtomicStatement|ConnectedStatement)
+;
+
+AllQuantor:
+	'für-alle' allQuantorVariable=TEXT 'gilt:' concernedAllStatement=(AtomicStatement|ConnectedStatement)
+;
+
+	
+

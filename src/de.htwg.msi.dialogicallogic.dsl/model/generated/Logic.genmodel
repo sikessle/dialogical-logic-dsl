@@ -8,10 +8,27 @@
   <genPackages prefix="Logic" basePackage="de.htwg.msi.dialogicallogic.dsl" disposableProviderFactory="true"
       fileExtensions="logic" ecorePackage="Logic.ecore#/">
     <genClasses ecoreClass="Logic.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Model/greetings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Model/statements"/>
     </genClasses>
-    <genClasses ecoreClass="Logic.ecore#//Greeting">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//Greeting/name"/>
+    <genClasses ecoreClass="Logic.ecore#//Statement"/>
+    <genClasses ecoreClass="Logic.ecore#//AtomicStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//AtomicStatement/text"/>
+    </genClasses>
+    <genClasses ecoreClass="Logic.ecore#//ConnectedStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//ConnectedStatement/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//ConnectedStatement/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Logic.ecore#//Subjunction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Subjunction/if"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Subjunction/then"/>
+    </genClasses>
+    <genClasses ecoreClass="Logic.ecore#//OneQuantor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//OneQuantor/oneQuantorVariable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//OneQuantor/concernedOneStatement"/>
+    </genClasses>
+    <genClasses ecoreClass="Logic.ecore#//AllQuantor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//AllQuantor/allQuantorVariable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantor/concernedAllStatement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
