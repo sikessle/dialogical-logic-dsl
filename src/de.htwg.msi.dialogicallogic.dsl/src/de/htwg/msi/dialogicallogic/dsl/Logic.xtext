@@ -22,6 +22,7 @@ AtomicStatement:
 	'«' text=TEXT '»'
 ;
 
+
 ConnectedStatement:
 	(left=AtomicStatement 'und' right=(AtomicStatement|ConnectedStatement)) |
 	(left=AtomicStatement 'oder' right=(AtomicStatement|ConnectedStatement))
@@ -32,11 +33,11 @@ Subjunction:
 ;
 
 OneQuantor:
-	'für-mindestens-'('einen'|'eine') oneQuantorVariable=TEXT 'gilt:' concernedOneStatement=(AtomicStatement|ConnectedStatement)
+	'für-mindestens-'('einen'|'eine') quantified=AtomicStatement 'gilt:' concernedOneStatement=(AtomicStatement|ConnectedStatement)
 ;
 
 AllQuantor:
-	'für-alle' allQuantorVariable=TEXT 'gilt:' concernedAllStatement=(AtomicStatement|ConnectedStatement)
+	'für-alle' quantified=AtomicStatement 'gilt:' concernedAllStatement=(AtomicStatement|ConnectedStatement)
 ;
 
 	
