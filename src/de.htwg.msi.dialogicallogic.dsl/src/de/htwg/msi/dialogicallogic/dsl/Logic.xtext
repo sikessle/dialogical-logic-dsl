@@ -20,19 +20,18 @@ AtomicStatement:
 	'«' text=TEXT '»';
 
 ConnectedStatement:
-	(left=AtomicStatement 'und' right=(AtomicStatement | ConnectedStatement)) |
-	(left=AtomicStatement 'oder' right=(AtomicStatement | ConnectedStatement));
+	(left=AtomicStatement ('und' | 'oder') right=(AtomicStatement | ConnectedStatement));
 
 Subjunction:
-	'wenn' if=(AtomicStatement | ConnectedStatement) 
+	'wenn' if=(AtomicStatement | ConnectedStatement)
 	'dann' then=(AtomicStatement | ConnectedStatement);
 
 OneQuantor:
-	'für-mindestens-' ('einen' | 'eine') quantified=AtomicStatement 
-	'gilt:' concernedStatement=(AtomicStatement |ConnectedStatement);
+	'für-mindestens-' ('einen' | 'eine') quantified=AtomicStatement
+	'gilt:' concernedStatement=(AtomicStatement | ConnectedStatement);
 
 AllQuantor:
-	'für-alle' quantified=AtomicStatement 
+	'für-alle' quantified=AtomicStatement
 	'gilt:' concernedStatement=(AtomicStatement | ConnectedStatement);
 
 	
