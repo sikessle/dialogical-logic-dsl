@@ -25,13 +25,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="OneQuantor" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="quantified" eType="#//AtomicStatement"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedOneStatement"
-        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedStatement" eType="#//Statement"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AllQuantor" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="quantified" eType="#//AtomicStatement"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedAllStatement"
-        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedStatement" eType="#//Statement"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

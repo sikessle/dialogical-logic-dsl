@@ -24,11 +24,11 @@
     </genClasses>
     <genClasses ecoreClass="Logic.ecore#//OneQuantor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//OneQuantor/quantified"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//OneQuantor/concernedOneStatement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//OneQuantor/concernedStatement"/>
     </genClasses>
     <genClasses ecoreClass="Logic.ecore#//AllQuantor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantor/quantified"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantor/concernedAllStatement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantor/concernedStatement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

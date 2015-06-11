@@ -3,42 +3,37 @@ grammar de.htwg.msi.dialogicallogic.dsl.Logic with org.eclipse.xtext.common.Term
 generate logic "http://www.htwg.de/msi/dialogicallogic/dsl/Logic"
 
 Model:
-	statements += Statement+;
-	
+	statements+=Statement+;
+
 TEXT:
-	 (ID | WS)+
-;
+	(ID | WS)+;
 
 Statement:
 	(AtomicStatement |
 	ConnectedStatement |
 	Subjunction |
 	OneQuantor |
-	AllQuantor) '.'
-;
+	AllQuantor) '.';
 
-// TODO: needs a content assist provider
+	// TODO: needs a content assist provider
 AtomicStatement:
-	'«' text=TEXT '»'
-;
-
+	'«' text=TEXT '»';
 
 ConnectedStatement:
-	(left=AtomicStatement 'und' right=(AtomicStatement|ConnectedStatement)) |
-	(left=AtomicStatement 'oder' right=(AtomicStatement|ConnectedStatement))
-;
+	(left=AtomicStatement 'und' right=(AtomicStatement | ConnectedStatement)) |
+	(left=AtomicStatement 'oder' right=(AtomicStatement | ConnectedStatement));
 
 Subjunction:
-	'wenn' if=(AtomicStatement|ConnectedStatement) 'dann' then=(AtomicStatement|ConnectedStatement)
-;
+	'wenn' if=(AtomicStatement | ConnectedStatement) 
+	'dann' then=(AtomicStatement | ConnectedStatement);
 
 OneQuantor:
-	'für-mindestens-'('einen'|'eine') quantified=AtomicStatement 'gilt:' concernedOneStatement=(AtomicStatement|ConnectedStatement)
-;
+	'für-mindestens-' ('einen' | 'eine') quantified=AtomicStatement 
+	'gilt:' concernedStatement=(AtomicStatement |ConnectedStatement);
 
 AllQuantor:
-	'für-alle' quantified=AtomicStatement 'gilt:' concernedAllStatement=(AtomicStatement|ConnectedStatement)
-;
+	'für-alle' quantified=AtomicStatement 
+	'gilt:' concernedStatement=(AtomicStatement | ConnectedStatement);
 
 	
 
