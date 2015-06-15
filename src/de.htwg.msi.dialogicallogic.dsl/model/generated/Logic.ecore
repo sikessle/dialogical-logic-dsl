@@ -6,32 +6,36 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//Statement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AtomicStatement" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicStatement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConnectedStatement" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectedStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//AtomicStatement"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Statement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Subjunction" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="if" eType="#//Statement"
+  <eClassifiers xsi:type="ecore:EClass" name="Subjunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="if" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="#//Statement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OneQuantor" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="OneQuantor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="quantified" eType="#//AtomicStatement"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedStatement" eType="#//Statement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedStatement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AllQuantor" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="AllQuantor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="quantified" eType="#//AtomicStatement"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedStatement" eType="#//Statement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedStatement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

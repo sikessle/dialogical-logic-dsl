@@ -9,7 +9,8 @@ TEXT:
 	(ID | WS)+;
 
 Statement:
-	(AtomicStatement |
+	name=ID ':'
+	statement=(AtomicStatement |
 	ConnectedStatement |
 	Subjunction |
 	OneQuantor |
@@ -23,8 +24,8 @@ ConnectedStatement:
 	(left=AtomicStatement ('und' | 'oder') right=(AtomicStatement | ConnectedStatement));
 
 Subjunction:
-	'wenn' if=(AtomicStatement | ConnectedStatement)
-	'dann' then=(AtomicStatement | ConnectedStatement);
+	('wenn' | 'weil') if=(AtomicStatement | ConnectedStatement)
+	('dann' | 'folgt-daraus') then=(AtomicStatement | ConnectedStatement);
 
 OneQuantor:
 	'für-mindestens-' ('einen' | 'eine') quantified=AtomicStatement
