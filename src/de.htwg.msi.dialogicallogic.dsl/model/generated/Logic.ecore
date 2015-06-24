@@ -3,39 +3,51 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="logic" nsURI="http://www.htwg.de/msi/dialogicallogic/dsl/Logic"
     nsPrefix="logic">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
-        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aussagen" upperBound="-1"
+        eType="#//Aussage" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="Autor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Aussage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Autor"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inhalt" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AtomicStatement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementarAussage">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConnectedStatement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//AtomicStatement"
+  <eClassifiers xsi:type="ecore:EClass" name="VerbundeneAussage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkeAussage" eType="#//ElementarAussage"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Subjunction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="if" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rechteAussage" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OneQuantor">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="quantified" eType="#//AtomicStatement"
+  <eClassifiers xsi:type="ecore:EClass" name="Subjunktion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="wennAussage" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedStatement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dannAussage" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AllQuantor">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="quantified" eType="#//AtomicStatement"
+  <eClassifiers xsi:type="ecore:EClass" name="EinsQuantifizierteAussage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifizierteAussage"
+        eType="#//ElementarAussage" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="betroffeneAussage" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="concernedStatement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllQuantifizierteAussage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifizierteAussage"
+        eType="#//ElementarAussage" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="betroffeneAussage" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attacke">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="angegriffeneAussage" eType="#//ElementarAussage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Verteidigung">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="verteidigteAussage" eType="#//ElementarAussage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="beweis" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

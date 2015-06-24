@@ -8,30 +8,40 @@
   <genPackages prefix="Logic" basePackage="de.htwg.msi.dialogicallogic.dsl" disposableProviderFactory="true"
       fileExtensions="logic" ecorePackage="Logic.ecore#/">
     <genClasses ecoreClass="Logic.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Model/statements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Model/aussagen"/>
     </genClasses>
-    <genClasses ecoreClass="Logic.ecore#//Statement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//Statement/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Statement/statement"/>
+    <genClasses ecoreClass="Logic.ecore#//Autor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//Autor/name"/>
     </genClasses>
-    <genClasses ecoreClass="Logic.ecore#//AtomicStatement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//AtomicStatement/text"/>
+    <genClasses ecoreClass="Logic.ecore#//Aussage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Aussage/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Aussage/inhalt"/>
     </genClasses>
-    <genClasses ecoreClass="Logic.ecore#//ConnectedStatement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//ConnectedStatement/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//ConnectedStatement/right"/>
+    <genClasses ecoreClass="Logic.ecore#//ElementarAussage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//ElementarAussage/name"/>
     </genClasses>
-    <genClasses ecoreClass="Logic.ecore#//Subjunction">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Subjunction/if"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Subjunction/then"/>
+    <genClasses ecoreClass="Logic.ecore#//VerbundeneAussage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//VerbundeneAussage/linkeAussage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//VerbundeneAussage/rechteAussage"/>
     </genClasses>
-    <genClasses ecoreClass="Logic.ecore#//OneQuantor">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//OneQuantor/quantified"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//OneQuantor/concernedStatement"/>
+    <genClasses ecoreClass="Logic.ecore#//Subjunktion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Subjunktion/wennAussage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Subjunktion/dannAussage"/>
     </genClasses>
-    <genClasses ecoreClass="Logic.ecore#//AllQuantor">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantor/quantified"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantor/concernedStatement"/>
+    <genClasses ecoreClass="Logic.ecore#//EinsQuantifizierteAussage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//EinsQuantifizierteAussage/quantifizierteAussage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//EinsQuantifizierteAussage/betroffeneAussage"/>
+    </genClasses>
+    <genClasses ecoreClass="Logic.ecore#//AllQuantifizierteAussage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantifizierteAussage/quantifizierteAussage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantifizierteAussage/betroffeneAussage"/>
+    </genClasses>
+    <genClasses ecoreClass="Logic.ecore#//Attacke">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Logic.ecore#//Attacke/angegriffeneAussage"/>
+    </genClasses>
+    <genClasses ecoreClass="Logic.ecore#//Verteidigung">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Logic.ecore#//Verteidigung/verteidigteAussage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Verteidigung/beweis"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

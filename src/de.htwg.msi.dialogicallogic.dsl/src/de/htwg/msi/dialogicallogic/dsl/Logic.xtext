@@ -1,39 +1,59 @@
-grammar de.htwg.msi.dialogicallogic.dsl.Logic with org.eclipse.xtext.common.Terminals
+grammar de.htwg.msi.dialogicallogic.dsl.Logic hidden(WS)//with org.eclipse.xtext.common.Terminals
 
-generate logic "http://www.htwg.de/msi/dialogicallogic/dsl/Logic"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate logic "http://www.htwg.de/msi/dialogicallogic/dsl/Logic" 
+
 
 Model:
-	statements+=Statement+;
-
-TEXT:
-	(ID | WS)+;
-
-Statement:
-	name=ID ':'
-	statement=(AtomicStatement |
-	ConnectedStatement |
-	Subjunction |
-	OneQuantor |
-	AllQuantor) '.';
-
-	// TODO: needs a content assist provider
-AtomicStatement:
-	'«' text=TEXT '»';
-
-ConnectedStatement:
-	(left=AtomicStatement ('und' | 'oder') right=(AtomicStatement | ConnectedStatement));
-
-Subjunction:
-	('wenn' | 'weil') if=(AtomicStatement | ConnectedStatement)
-	('dann' | 'folgt-daraus') then=(AtomicStatement | ConnectedStatement);
-
-OneQuantor:
-	'für-mindestens-' ('einen' | 'eine') quantified=AtomicStatement
-	'gilt:' concernedStatement=(AtomicStatement | ConnectedStatement);
-
-AllQuantor:
-	'für-alle' quantified=AtomicStatement
-	'gilt:' concernedStatement=(AtomicStatement | ConnectedStatement);
-
+	aussagen+=Aussage+;
 	
+terminal ID  		: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+terminal WS			: (' '|'\t'|'\r'|'\n')+;
 
+
+Freitext:
+	('ä' | 'Ä' | 'ö' | 'Ö' | 'ü' | 'Ü' | 'ß' | ID | WS)+
+;
+
+Autor:
+	name=Freitext
+;
+
+Aussage:
+	name=Autor ':'
+	inhalt=(ElementarAussage |
+	VerbundeneAussage |
+	Subjunktion |
+	EinsQuantifizierteAussage |
+	AllQuantifizierteAussage |
+	Attacke | 
+	Verteidigung) '.';
+
+ElementarAussage:
+	'«' name=Freitext '»';
+
+VerbundeneAussage:
+	(linkeAussage=ElementarAussage ('und' | 'oder') rechteAussage=(ElementarAussage | VerbundeneAussage));
+
+Subjunktion:
+	('wenn' | 'weil') wennAussage=(ElementarAussage | VerbundeneAussage)
+	('dann' | ('folgt' 'daraus')) dannAussage=(ElementarAussage | VerbundeneAussage);
+
+EinsQuantifizierteAussage:
+	'für' 'mindestens' ('einen' | 'eine' | 'ein') quantifizierteAussage=ElementarAussage
+	'gilt:' betroffeneAussage=(ElementarAussage | VerbundeneAussage);
+
+AllQuantifizierteAussage:
+	'für' 'alle' quantifizierteAussage=ElementarAussage
+	'gilt:' betroffeneAussage=(ElementarAussage | VerbundeneAussage);
+
+Attacke:
+	'Ich' 'bezweifle:'  
+	'«' angegriffeneAussage=[ElementarAussage|Freitext] '»'
+;	
+
+Verteidigung:
+	'Ich' 'beweise:' '«' verteidigteAussage=[ElementarAussage|Freitext] '»' 
+	'durch:' beweis=(ElementarAussage | VerbundeneAussage)
+;	
