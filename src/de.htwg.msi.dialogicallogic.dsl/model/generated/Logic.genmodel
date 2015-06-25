@@ -10,6 +10,9 @@
     <genClasses ecoreClass="Logic.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Model/aussagen"/>
     </genClasses>
+    <genClasses ecoreClass="Logic.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//Variable/name"/>
+    </genClasses>
     <genClasses ecoreClass="Logic.ecore#//Autor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Logic.ecore#//Autor/name"/>
     </genClasses>
@@ -29,15 +32,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//Subjunktion/dannAussage"/>
     </genClasses>
     <genClasses ecoreClass="Logic.ecore#//EinsQuantifizierteAussage">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//EinsQuantifizierteAussage/quantifizierteAussage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//EinsQuantifizierteAussage/quantifiziertesElement"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//EinsQuantifizierteAussage/betroffeneAussage"/>
     </genClasses>
     <genClasses ecoreClass="Logic.ecore#//AllQuantifizierteAussage">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantifizierteAussage/quantifizierteAussage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantifizierteAussage/quantifiziertesElement"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Logic.ecore#//AllQuantifizierteAussage/betroffeneAussage"/>
     </genClasses>
-    <genClasses ecoreClass="Logic.ecore#//Attacke">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Logic.ecore#//Attacke/angegriffeneAussage"/>
+    <genClasses ecoreClass="Logic.ecore#//Angriff">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Logic.ecore#//Angriff/angegriffeneAussage"/>
     </genClasses>
     <genClasses ecoreClass="Logic.ecore#//Verteidigung">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Logic.ecore#//Verteidigung/verteidigteAussage"/>
