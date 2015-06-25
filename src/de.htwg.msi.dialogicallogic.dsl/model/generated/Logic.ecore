@@ -6,6 +6,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="aussagen" upperBound="-1"
         eType="#//Aussage" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Autor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -31,18 +34,18 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EinsQuantifizierteAussage">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifizierteAussage"
-        eType="#//ElementarAussage" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifiziertesElement"
+        eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="betroffeneAussage" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AllQuantifizierteAussage">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifizierteAussage"
-        eType="#//ElementarAussage" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantifiziertesElement"
+        eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="betroffeneAussage" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Attacke">
+  <eClassifiers xsi:type="ecore:EClass" name="Angriff">
     <eStructuralFeatures xsi:type="ecore:EReference" name="angegriffeneAussage" eType="#//ElementarAussage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Verteidigung">
