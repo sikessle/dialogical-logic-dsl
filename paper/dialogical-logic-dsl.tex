@@ -141,10 +141,16 @@ Eine Aussage wie z. B. \enquote{wenn $\rightarrow$ (wenn $\rightarrow$ dann)} is
 Solche Konstrukte kommen in Dialogen aber recht selten vor und stellen nur eine unwesentliche Einschränkung dar.
 Diese Einschränkungen fördern das einfache Verständnis von Dialogen und verhindern, dass kompliziert geschachtelte Formulierungen verwendet werden, die den Bürgern unter Umständen nicht verständlich sind.
 
+Das Meta-Modell liegt als \emph{ecore} Datei vor, welche interoperabel mit vielen Eclipse-Projekten ist. 
+Da es sich um ein XML-Format handelt, ist auch eine anderweitige Verwendung mit geringem Aufwand möglich.
+So wäre auch durchaus ein graphischer Editor basierend auf diesem Meta-Modell vorstellbar.
+Hier sei insbesondere auf das Projekt \emph{Spray} verwiesen, an dem die HTWG beteiligt ist.
+
 \section{Grammatik}
 
 Unser Vorschlag für die konkrete Syntax, um das Meta-Modell abzubilden ist in \autoref{grammatik} ersichtlich.
 Die Notation ist an die \ac{EBNF} angelehnt und beschreibt die Grammatik für das Tool Xtext \cite{Xtext}.
+Der Quellcode zum Projekt kann bei GitHub gefunden werden \cite{GitHubCode}.
 
 \begin{table}[htbp]
 \centering
@@ -172,11 +178,6 @@ durch:		& Leitet die Nennung einer Elementar oder verbundenen Aussage ein, die a
 Wichtige Terminale sind in \autoref{terminale} ersichtlich.
 Es wurden explizit Wörter und Zeichen gewählt die einerseits beim Lesen einer Aussage nicht stören und den natürlichsprachlichen Eindruck so wenig wie möglich beeinträchtigen. Andererseits aber auch eine klare Struktur bieten, um Aussagen auch ohne Tool-Unterstützung schnell erfassen bzw. formulieren zu können.
 
-Da in der deutschen Sprache Guillemets («,») recht selten verwendet werden, trotzdem im Lesefluss kaum stören, bieten sich diese gut als \enquote{Klammer} für Aussagen an.
-So können auch weiterhin normale Anführungszeichen in Aussagen vorkommen.
-Durch die generischen Terminale für Subjunktionen, Quantoren, Angriffe und Verteidigungen ist sichergestellt, dass für eine Vielzahl von Aussagen ein annähernd korrekter deutscher Satz entsteht, der sich flüssig lesen lässt.
-
-
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\textwidth]{img/grammatik.png}
@@ -184,8 +185,45 @@ Durch die generischen Terminale für Subjunktionen, Quantoren, Angriffe und Vert
 \label{grammatik}
 \end{figure}
 
+Da in der deutschen Sprache Guillemets («,») recht selten verwendet werden, trotzdem im Lesefluss kaum stören, bieten sich diese gut als \enquote{Klammer} für Aussagen an.
+So können auch weiterhin normale Anführungszeichen in Aussagen vorkommen.
+Durch die generischen Terminale für Subjunktionen, Quantoren, Angriffe und Verteidigungen ist sichergestellt, dass für eine Vielzahl von Aussagen ein annähernd korrekter deutscher Satz entsteht, der sich flüssig lesen lässt.
 
-ECLIPSE TREE!
+
+\section{Editor und Parser}
+
+Der generierte Editor und Parser unterstützen Autovervollständigung von eingegebenem Text (vgl. \autoref{completion2}) bzw. von Schlüsselwörtern (vgl. \autoref{completion1}).
+Falscheingaben werden sofort während des Tippens erkannt und rot unterstrichen, um den Anwender bei der Formulierung seiner Aussage zu unterstützen.
+Eine weitere hilfreiche Funktion ist die Darstellung einer Baumansicht der Aussagen (vgl. \autoref{outline}).
+Hierbei ist anzumerken, dass die Baumansicht noch nicht vollständig entwickelt ist.
+Die ersichtlichen \enquote{$<$unnamed$>$} Knoten können mit angepassten Content-Providern noch mit sinnvollen Bezeichnern versehen werden.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{img/completion2.png}
+\caption{Autovervollständigung von Text}
+\label{completion2}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{img/completion1.png}
+\caption{Autovervollständigung von Schlüsselwörtern}
+\label{completion1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{img/outline.png}
+\caption{Baumansicht der Aussage}
+\label{outline}
+\end{figure}
+
+Der Editor wird als Eclipse-Plugin generiert und kann in anderen Eclipse RCP Anwendungen einfach integriert werden.
+Es ist auch möglich, das durch das Parsen entstandene Modell einer Aussage in eine normalen Java-Anwendung zu laden \cite{XtextLoadJava}.
+Sollte eine Eclipse-basierte Umgebung nicht möglich sein, so kann der Parser als Java-Applikation exportiert und in anderen Projekten als Backend genutzt werden.
+In diesem Fall steht dann der Editor nicht zur Verfügung, könnte jedoch nachgebaut werden (z .B. für Internetprojekte).
+
 
 \section{Beispiele}
 
@@ -213,29 +251,48 @@ Alle Namen und Argumente sind rein fiktiv.
 Michaela P. (Anwohnerin): für alle «Anwohner in der Innenstadt» gilt: «die Sperrstunde um 3 Uhr raubt uns den Schlaf» und «führt zu mehr Vandalismus durch die Betrunkenen».\\
 Jonas F. (Student): Ich bezweifle «führt zu mehr Vandalismus durch die Betrunkenen».\\
 Michaela P. (Anwohnerin): Ich beweise «führt zu mehr Vandalismus durch die Betrunkenen» durch: «die Polizeistatistik von 2014, die einen klaren Zusammenhang herstellt». \\
-Jonas F. (Student): Ich bezweifle «die Sperrstunde um 3 Uhr raubt uns den Schlaf».\\
-Michaela P. (Anwohnerin): Ich beweise «die Sperrstunde um 3 Uhr raubt uns den Schlaf» durch: «eine Unterschriftenliste aller Anwohner, die belegt, dass sie sich gestört fühlen».
+Jonas F. (Student): Ich bezweifle: «die Sperrstunde um 3 Uhr raubt uns den Schlaf».\\
+Michaela P. (Anwohnerin): Ich beweise: «die Sperrstunde um 3 Uhr raubt uns den Schlaf» durch: «eine Unterschriftenliste aller Anwohner, die belegt, dass sie sich gestört fühlen».
 
 % ============================ CHAPTER
 \chapter{Anwendungsfälle} % Simon
 
-dd
+Um bewerten zu können, ob die entworfene Sprache eine Bereicherung für vorhandene Probleme bzw. Anwendungen darstellt, sollen in diesem Kapitel einige Anwendungsfälle evaluiert werden.
 
 \section{Syntax und Semantik} % Tobi
 
-\section{Wahr, falsch und non-liquet} % Tobi
-%Behandlung von non liquet -> Semantik
+\section{Sic, non und non-liquet} % Tobi
+Behandlung von non liquet -> Semantik
 
 \section{Strukturierte Aussagen} % Simon
-%Speicherung ,Export, XML, etc...
 
+Momentan werden Diskussionen in Liquid Democracy Tools einfach als Text in einer Datenbank gespeichert.
+Der Diskussionsverlauf ist dabei lediglich durch Zeitstempel und das gewöhnliche \enquote{Antwort auf} Schema strukturiert.
+Durch die strukturierte Ablage von Aussagen als Instanzen des Meta-Modells, eröffnen sich neue Möglichkeiten bezüglich der Speicherung von Diskussionen.
 
+Da die Aussagen im ecore XML Format vorliegen, ist einerseits die Speicherung als XML naheliegend, andererseits auch ein Export in andere Formate, wie z. B. JSON einfach möglich.
+Dazu könnte ein Model-to-Model Generator entwickelt werden, der solche Modelltransformationen vornimmt.
+
+Ein weiterer Vorteil ist die Generierung von beliebigem Text aus dem Modell.
+So lässt sich eine Aussage bzw. ein Dialog in ein übersichtliches HTML Format konvertieren und anschließend auf einer Archiv-Seite als Historie zu einem bestimmten Projekt veröffentlichen.
+
+Des Weiteren stellt die Ablage eines Diskussionsverlaufs eine interessante Möglichkeit dar.
+Bei Änderungen von Gegebenheiten, bzw. der Aufklärung von bisher nicht entscheidbaren Aussagen (non-liquet) kann eine Diskussion systematisch auf einen definierten Zeitpunkt zurück gerollt werden.
+Eventuell ist sogar möglich, die Diskussion automatisch neu zu bewerten, da sich so bestimmte Folgeaussagen als wahr oder falsch herausstellen (ggü. non-liquet in einem älteren Zustand der Diskussion).
+Alternativ könnten die Autoren die von den geänderten Wahrheitswerten der Aussagen betroffen sind benachrichtigt werden und den Dialog auf Basis dieser neuen Datenlage fortführen.
 
 \section{Workflow Engines} % Simon
 
+Da Workflow Engines in vielen Bereichen eine zentrale Rolle spielen, soll nachfolgend erörtert werden, wie die entwickelte DSL mit Workflow Engines bzw. ähnlichen System verknüpft werden kann.
+
 \subsection{Liquid Democracy} % Simon
 
-\autoref{democracyos} von DemocracyOS \cite{DemocracyOS}.
+Liquid Democracy spielt bei der Demokratie 2.0 eine große Rolle. 
+In diesem Bereich sind deshalb einige Softwarelösungen entstanden, die den Prozess der Liquid Democracy in Internetplattformen abbilden.
+Diese basieren im Prinzip auch auf Workflow Engines, die entsprechend konfiguriert werden können.
+
+Wenn unsere DSL in eine solche Software, wie z.B. DemocracyOS (\cite{DemocracyOS}) eingebunden wird, kann der bisherige chaotische und oftmals temperamentvolle Diskussionsverlauf auf eine sachliche Ebene gebracht werden.
+Damit würden auch rhetorisch starke Personen ggü. weniger begabten Menschen nicht mehr so stark bevorteilt.
 
 \begin{figure}[htbp]
 \centering
@@ -244,16 +301,31 @@ dd
 \label{democracyos}
 \end{figure}
 
-Gezielte Angriffe
+DemocracyOS bietet die Möglichkeit Textpassagen eines Vorschlags zu kommentieren und dadurch einen parallelen Diskussionsstrang zu eröffnen. 
+Hier könnte unsere DSL eingebunden werden (vgl. \autoref{democracyos}, die Box \enquote{Dialogischer Dialog} kann  mit \autoref{faktencheck} gefüllt werden), um die Diskussion unterstützen.
 
-AllQuantor
-EinsQuantor
+Denkbar wäre auch, mit Blick auf quantifizierte Aussagen, dass Nutzer die Möglichkeit für Angriffe vorgeschlagen bekommen.
+Eine allquantifizierte Aussage könnte mit dem Hinweis \enquote{Bringen Sie mindestens 1 Gegenbeispiel} versehen werden und so schon ein Angriffsmuster vorschlagen.
+Ähnliches ist auch für andere Aussagetypen denkbar.
+Dies würde zu einer \emph{interaktionsgesteuerten} Demokratie-Plattform führen.
+
+Ein Benutzer müsste von der dialogischen Logik nicht viel verstehen, er müsste lediglich mit der Plattform interagieren und würde so unbemerkt einen dialogischen Dialog führen.
+Natürlich könnten und müssten entsprechend ansprechende Oberflächen, die eventuell Teile der Grammatik als graphische Elemente ausdrücken entwickelt werden.
 
 \subsection{Faktencheck} % Simon
 
-Einfachere Interpretation durch KI der Elementaraussagen ggü. komplexen Aussagen.  => Intelligenzverstärker durch einfachen Faktencheck
+Ein weiterer Einsatzzweck wäre ein (Echtzeit-)Faktencheck, der die partizipierenden Bürger bei der Wahrheitsfindung unterstützt.
+Dieser Ansatz passt auch zur dialogischen Logik, welche hilft die \enquote{Wahrheit zu erarbeiten} (\cite{OrtnerDL}).
 
-Zu Elementaraussae Tag-Cloud anzeigen mit Fakten (Open Data)
+Eine Software könnte unter einem Dialog passend zu einer markierten Elementaraussage entsprechende Handlungsmöglichkeiten und intelligente Fakten präsentieren (vgl. \autoref{faktencheck}).
+Dies hätte den Effekt eines \enquote{Intelligenzverstärkers}, der jedem Bürger das globale Wissen zur Seite stellt.
+
+Auch die Anbindung von intelligenten Wissenssystemen (z. B. Watson \cite{Watson}), stellen interessante Möglichkeiten dar.
+Durch das Aufbrechen eines komplexen Dialogs in kleine Elementaraussagen, können auch diese Systeme effektiver arbeiten und bessere Antworten liefern.
+Insbesondere der Trend zu \emph{OpenData} könnte hier noch mehr Transparenz in Bürgerdiskussionen bringen.
+Wird z. B. die Aussage getätigt, dass die Wasserqualität des Bodensees sich verschlechtert hat, könnten dank OpenData (und Smart Cities) sofort entsprechende Daten beim Fakten-Assistent (vgl. \autoref{faktencheck}) angezeigt werden, um diese Aussage im nächsten Schritt zu widerlegen oder zu bestätigen.
+
+Wenn noch eine Ontologie mit den Begriffen der Diskussion angebunden wird (z. B. verwendete Begriffe im Raum Konstanz), dann könnte eine Art \emph{Stadt-Ontologie} erzeugt werden und Nutzer bei Diskussionsplattformen die geläufigen Begriffe eingeblendet bekommen (z. B. anstatt Bus \enquote{Roter Arnold}).
 
 \begin{figure}[htbp]
 \centering
@@ -262,7 +334,7 @@ Zu Elementaraussae Tag-Cloud anzeigen mit Fakten (Open Data)
 \label{faktencheck}
 \end{figure}
 
-Whatson versteht Elementaraussagen
+
 
 \section{Politischer Unterrichtsdiskurs} % Tobi
 
@@ -291,23 +363,45 @@ Ausblick
 \begin{singlespace}
 \begin{thebibliography}{9}
 
-\bibitem[Ort15]{OrtnerDL}
-  Prof. Dr. Erich Ortner,
-  \emph{Einf{\"u}hrung in die Dialogische Informatik},
-  HTWG Präsentation,
-  2015.
-  
+% SORT BY AUTHOR LASTNAME
+
 \bibitem[Dem15]{DemocracyOS}
   The DemocracyOS Foundation,
   \emph{DemocracyOS - Power in your hands},
   \url{http://democracyos.org},
   besucht am 25.06.2015.
 
-\bibitem[Ecl15]{Xtext}
+\bibitem[Ecl15a]{Xtext}
   The Eclipse Foundation,
   \emph{Xtext - Language Development Made Easy!},
   \url{https://eclipse.org/Xtext/},
   besucht am 25.06.2015.
+  
+\bibitem[Ecl15b]{XtextLoadJava}
+  The Eclipse Foundation,
+  \emph{Xtext FAQ - How do I load my model in a standalone Java application?},
+  \url{http://wiki.eclipse.org/Xtext/FAQ#How_do_I_load_my_model_in_a_standalone_Java_application.C2.A0.3F},
+  besucht am 25.06.2015.
+  
+\bibitem[IBM15]{Watson}
+  IBM Deutschland GmbH
+  \emph{IBM Watson},
+  \url{http://www-05.ibm.com/de/watson/},
+  besucht am 18.06.2015.
+  
+  
+\bibitem[Kes15]{GitHubCode}
+  Simon Kessler, Tobias Keh,
+  \emph{Dialogische Logik DSL Quellcode},
+  \url{https://github.com/sikessle/dialogical-logic-dsl},
+  besucht am 20.06.2015.
+
+\bibitem[Ort15]{OrtnerDL}
+  Prof. Dr. Erich Ortner,
+  \emph{Einf{\"u}hrung in die Dialogische Informatik},
+  HTWG Präsentation,
+  2015.
+
 
 \end{thebibliography}
 \end{singlespace}
