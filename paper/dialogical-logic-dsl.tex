@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{caption}
 \usepackage{tabularx}
+\usepackage{float}
 \usepackage{listings}
 \usepackage[babel,german=quotes]{csquotes}
 \usepackage[printonlyused]{acronym}
@@ -19,9 +20,9 @@
 \captionsetup[table]{belowskip=8pt}
 
 
-\newcommand{\thema}{Eine domänenspezifische Sprache für die Dialogische Logik}
+\newcommand{\thema}{Eine domänenspezifische Sprache für die dialogische Logik}
 \newcommand{\abgabedatum}{24.07.2015}
-\newcommand{\zusammenfassung}{d}
+\newcommand{\zusammenfassung}{HIER KOMMT NOCH DER ABSTRACT REIN}
 
 
 \begin{document}
@@ -45,6 +46,7 @@
 
 % Alphabetisch sortieren
 \begin{acronym}[LAENGE]
+\acro{DSL}{domänenspezifische Sprache}
 \acro{EBNF}{Erweiterte Backus-Naur-Form}
 \end{acronym}
 
@@ -63,19 +65,19 @@
 Die Demokratie wandelt sich und versucht sich neu zu erfinden. 
 Konzepte wie die \emph{deliberative Demokratie} erhalten unter dem Schlagwort \emph{Demokratie 2.0} neuen Zulauf. 
 Auch die zunehmende Vernetzung der Gesellschaft durch das Internet trägt zu diesem Trend bei. 
-Während in einer nicht vernetzten Welt Bürger nur sehr wenige Berührungs- und Einflusspunkte mit der Politik haben (z. B. während den Wahlen), kann das Internet helfen, Bürger aktiv in die politische und demokratische Entscheidungsfindung einzubeziehen.
-Auch als \emph{Liquid Democracy} bekannt, ermöglicht dieser Ansatz es den Bürgern, für einzelne Gesetze abzustimmen und Argumente einzubringen bzw. Diskussionen zu führen.
+Während in einer nicht vernetzten Welt Bürger nur sehr wenige Berührungs- und Einflusspunkte mit der Politik haben (z. B. während den Wahlen), kann das Internet helfen, Bürger aktiv in die politische und demokratische Entscheidungsfindung miteinzubeziehen.
+Eng mit \emph{Liquid Democracy} verwandt, ermöglicht dieser Ansatz es den Bürgern, für einzelne Gesetze abzustimmen und Argumente einzubringen bzw. Diskussionen zu führen.
 Die Diskussionen folgen bisher einem unstrukturierten Ablauf von Argumenten.
 Hier könnte die \emph{dialogische Logik} zu einem geordneten, gesteuerten und fairen Dialog verhelfen.
 
-Da die Regeln der dialogischen Logik und ihre formale Darstellung zwar klar und deutlich sind, so verhindern sie doch den Zugang der breiten Masse zu diesem Werkzeug.
+Die Regeln der dialogischen Logik und ihre formale Darstellung sind zwar klar und deutlich, verhindern jedoch den Zugang der breiten Masse zu diesem Werkzeug.
 Oder wie Ludwig Wittgenstein einst formulierte:
 \begin{quote}
 \enquote{Die Grenzen meiner Sprache bedeuten die Grenzen meiner Welt.}
 \end{quote}
 Das heißt, wollen wir wirklich Bürger einer Demokratie 2.0 ausgrenzen, die diese neue und innovative Form des Dialogs nicht beherrschen? Oder wollen wir Wege finden, auch diesen Menschen den dialogischen Dialog zu ermöglichen?
 
-In dieser Projektarbeit soll deshalb eine domänenspezifische Sprache entwickelt werden, die es ermöglicht einen dialogischen Dialog mit annähernd natürlichsprachlichen Elementen zu formulieren. 
+In dieser Projektarbeit soll deshalb eine \ac{DSL} entwickelt werden, die es ermöglicht einen dialogischen Dialog mit annähernd natürlichsprachlichen Elementen zu formulieren. 
 Dabei liegt der Fokus auf einer einfachen Erlernbarkeit der Sprache.
 
 Die Arbeit gliedert sich in eine weitere Motivation für die Arbeit, Erläuterung der theoretischen Grundlagen, Definition der Syntax, Evaluierung von Anwendungsfällen und einem abschließenden Fazit und Ausblick.
@@ -84,6 +86,7 @@ Es erfolgt eine Beschränkung auf die Syntax der Sprache, wobei anwendungsspezif
 % ============================ CHAPTER
 \chapter{Motivation} % Tobi
 
+Eventuell kannst du hier was von der Einleitung herholen..
 
 % ============================ CHAPTER
 \chapter{Theoretische Grundlagen}  % Tobi
@@ -141,10 +144,10 @@ Eine Aussage wie z. B. \enquote{wenn $\rightarrow$ (wenn $\rightarrow$ dann)} is
 Solche Konstrukte kommen in Dialogen aber recht selten vor und stellen nur eine unwesentliche Einschränkung dar.
 Diese Einschränkungen fördern das einfache Verständnis von Dialogen und verhindern, dass kompliziert geschachtelte Formulierungen verwendet werden, die den Bürgern unter Umständen nicht verständlich sind.
 
-Das Meta-Modell liegt als \emph{ecore} Datei vor, welche interoperabel mit vielen Eclipse-Projekten ist. 
+Das Meta-Modell liegt als \emph{ecore} (vgl. \cite{Ecore}) Datei vor, welche interoperabel mit vielen Eclipse-Projekten ist. 
 Da es sich um ein XML-Format handelt, ist auch eine anderweitige Verwendung mit geringem Aufwand möglich.
 So wäre auch durchaus ein graphischer Editor basierend auf diesem Meta-Modell vorstellbar.
-Hier sei insbesondere auf das Projekt \emph{Spray} verwiesen, an dem die HTWG beteiligt ist.
+Hier sei insbesondere auf das Projekt \emph{Spray} (vgl. \cite{Spray}) verwiesen, an dem die HTWG (Prof. Dr. Marko Boger) beteiligt ist.
 
 \section{Grammatik}
 
@@ -175,15 +178,15 @@ durch:		& Leitet die Nennung einer Elementar oder verbundenen Aussage ein, die a
 \end{tabularx}
 \end{table}
 
-Wichtige Terminale sind in \autoref{terminale} ersichtlich.
-Es wurden explizit Wörter und Zeichen gewählt die einerseits beim Lesen einer Aussage nicht stören und den natürlichsprachlichen Eindruck so wenig wie möglich beeinträchtigen. Andererseits aber auch eine klare Struktur bieten, um Aussagen auch ohne Tool-Unterstützung schnell erfassen bzw. formulieren zu können.
-
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\textwidth]{img/grammatik.png}
 \caption{Grammatik von \enquote{Logic}}
 \label{grammatik}
 \end{figure}
+
+Wichtige Terminale sind in \autoref{terminale} ersichtlich.
+Es wurden explizit Wörter und Zeichen gewählt die einerseits beim Lesen einer Aussage nicht stören und den natürlichsprachlichen Eindruck so wenig wie möglich beeinträchtigen. Andererseits aber auch eine klare Struktur bieten, um Aussagen auch ohne Tool-Unterstützung schnell erfassen bzw. formulieren zu können.
 
 Da in der deutschen Sprache Guillemets («,») recht selten verwendet werden, trotzdem im Lesefluss kaum stören, bieten sich diese gut als \enquote{Klammer} für Aussagen an.
 So können auch weiterhin normale Anführungszeichen in Aussagen vorkommen.
@@ -198,21 +201,21 @@ Eine weitere hilfreiche Funktion ist die Darstellung einer Baumansicht der Aussa
 Hierbei ist anzumerken, dass die Baumansicht noch nicht vollständig entwickelt ist.
 Die ersichtlichen \enquote{$<$unnamed$>$} Knoten können mit angepassten Content-Providern noch mit sinnvollen Bezeichnern versehen werden.
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{img/completion2.png}
 \caption{Autovervollständigung von Text}
 \label{completion2}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{img/completion1.png}
 \caption{Autovervollständigung von Schlüsselwörtern}
 \label{completion1}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{img/outline.png}
 \caption{Baumansicht der Aussage}
@@ -232,20 +235,20 @@ Zuerst werden einfache logische Ausdrücke vorgestellt, die dann angegriffen bzw
 
 \subsection{Logische Aussage}
 
-Eine einfache Aussage, wie z. B. \enquote{Die Politik hat versagt} (Max Muster) lassen sich mit der DSL als \enquote{Max Muster: «Die Politik hat versagt».} ausdrücken.
+Eine einfache Aussage, wie z. B. \enquote{Die Politik hat versagt} (Max Muster) lassen sich mit der \ac{DSL} als \enquote{Max Muster: «Die Politik hat versagt».} ausdrücken.
 Zusammengesetzte Aussagen werden wie folgt formuliert: \enquote{Max Muster: «Die Politk hat versagt» und «das Volk ist politikverdrossen».}.
-Die Subjunktion könnte so verwendet werden: \enquote{Max Muster: weil «das Volk politikverdrossen ist» folgt daraus «dass die Politk versagt hat».}
-Quantifizierung von Variablen ist praktisch für verallgemeinernde Aussagen, wie \enquote{Max Muster: für alle «Jugendlichen» gilt: «dass sie nicht wissen, was sie einmal arbeiten möchten».}
+Die Subjunktion könnte so verwendet werden: \enquote{Max Muster: weil «das Volk politikverdrossen ist» folgt daraus «dass die Politk versagt hat».}.
+Quantifizierung von Variablen ist praktisch für verallgemeinernde Aussagen, wie \enquote{Max Muster: für alle «Jugendlichen» gilt: «dass sie nicht wissen, was sie einmal arbeiten möchten».}.
 
 \subsection{Angriff und Verteidigung}
 
-Insbesondere der strukturierte Ablauf von Diskussionen lässt sich mit der dialogischen Logik hervorragend unterstützen. Deshalb sollen nachfolgend einige Beispiele für einen Angriff bzw. eine Verteidigung folgen.
-Beispiel Angriff: \enquote{Petra Maier: Ich bezweifle «das Volk politikverdrossen ist».}
-Eine Verteidigung könnte lauten: \enquote{Max Muster: Ich beweise «das Volk ist politikverdrossen» durch: «die Wahlbeteiligung sinkt seit den letzten zehn Jahren kontinuierlich».}
+Insbesondere der strukturierte Ablauf von Diskussionen lässt sich mit der dialogischen Logik hervorragend unterstützen. Deshalb sollen nachfolgend ein Beispiel für einen Angriff bzw. eine Verteidigung folgen.
+Beispiel Angriff: \enquote{Petra Maier: Ich bezweifle «das Volk politikverdrossen ist».}.
+Eine Verteidigung könnte lauten: \enquote{Max Muster: Ich beweise «das Volk ist politikverdrossen» durch: «die Wahlbeteiligung sinkt seit den letzten zehn Jahren kontinuierlich».}.
 
 \subsection{Gesamtdialog}
 
-Nachfolgend wird eine Diskussion um die Sperrstunde in der Konstanzer Innenstadt mit Hilfe der dialogischen Logik und der DSL \enquote{Logic} geführt. 
+Nachfolgend wird eine Diskussion um die Sperrstunde in der Konstanzer Innenstadt mit Hilfe der dialogischen Logik und der \ac{DSL} \enquote{Logic} geführt. 
 Alle Namen und Argumente sind rein fiktiv.
 
 Michaela P. (Anwohnerin): für alle «Anwohner in der Innenstadt» gilt: «die Sperrstunde um 3 Uhr raubt uns den Schlaf» und «führt zu mehr Vandalismus durch die Betrunkenen».\\
@@ -279,11 +282,11 @@ So lässt sich eine Aussage bzw. ein Dialog in ein übersichtliches HTML Format 
 Des Weiteren stellt die Ablage eines Diskussionsverlaufs eine interessante Möglichkeit dar.
 Bei Änderungen von Gegebenheiten, bzw. der Aufklärung von bisher nicht entscheidbaren Aussagen (non-liquet) kann eine Diskussion systematisch auf einen definierten Zeitpunkt zurück gerollt werden.
 Eventuell ist sogar möglich, die Diskussion automatisch neu zu bewerten, da sich so bestimmte Folgeaussagen als wahr oder falsch herausstellen (ggü. non-liquet in einem älteren Zustand der Diskussion).
-Alternativ könnten die Autoren die von den geänderten Wahrheitswerten der Aussagen betroffen sind benachrichtigt werden und den Dialog auf Basis dieser neuen Datenlage fortführen.
+Alternativ könnten die Autoren, die von den geänderten Wahrheitswerten der Aussagen betroffen sind, benachrichtigt werden und den Dialog auf Basis dieser neuen Datenlage fortführen.
 
 \section{Workflow Engines} % Simon
 
-Da Workflow Engines in vielen Bereichen eine zentrale Rolle spielen, soll nachfolgend erörtert werden, wie die entwickelte DSL mit Workflow Engines bzw. ähnlichen System verknüpft werden kann.
+Da Workflow Engines in vielen Bereichen eine zentrale Rolle spielen, soll nachfolgend erörtert werden, wie die entwickelte \ac{DSL} mit Workflow Engines bzw. ähnlichen System verknüpft werden kann.
 
 \subsection{Liquid Democracy} % Simon
 
@@ -291,7 +294,7 @@ Liquid Democracy spielt bei der Demokratie 2.0 eine große Rolle.
 In diesem Bereich sind deshalb einige Softwarelösungen entstanden, die den Prozess der Liquid Democracy in Internetplattformen abbilden.
 Diese basieren im Prinzip auch auf Workflow Engines, die entsprechend konfiguriert werden können.
 
-Wenn unsere DSL in eine solche Software, wie z.B. DemocracyOS (\cite{DemocracyOS}) eingebunden wird, kann der bisherige chaotische und oftmals temperamentvolle Diskussionsverlauf auf eine sachliche Ebene gebracht werden.
+Wenn unsere \ac{DSL} in eine solche Software, wie z.B. DemocracyOS (\cite{DemocracyOS}) eingebunden wird, kann der bisherige chaotische und oftmals temperamentvolle Diskussionsverlauf auf eine sachliche Ebene gebracht werden.
 Damit würden auch rhetorisch starke Personen ggü. weniger begabten Menschen nicht mehr so stark bevorteilt.
 
 \begin{figure}[htbp]
@@ -302,7 +305,7 @@ Damit würden auch rhetorisch starke Personen ggü. weniger begabten Menschen ni
 \end{figure}
 
 DemocracyOS bietet die Möglichkeit Textpassagen eines Vorschlags zu kommentieren und dadurch einen parallelen Diskussionsstrang zu eröffnen. 
-Hier könnte unsere DSL eingebunden werden (vgl. \autoref{democracyos}, die Box \enquote{Dialogischer Dialog} kann  mit \autoref{faktencheck} gefüllt werden), um die Diskussion unterstützen.
+Hier könnte unsere \ac{DSL} eingebunden werden (vgl. \autoref{democracyos}, die Box \enquote{Dialogischer Dialog} kann  mit \autoref{faktencheck} gefüllt werden), um die Diskussion unterstützen.
 
 Denkbar wäre auch, mit Blick auf quantifizierte Aussagen, dass Nutzer die Möglichkeit für Angriffe vorgeschlagen bekommen.
 Eine allquantifizierte Aussage könnte mit dem Hinweis \enquote{Bringen Sie mindestens 1 Gegenbeispiel} versehen werden und so schon ein Angriffsmuster vorschlagen.
@@ -310,9 +313,16 @@ Eine allquantifizierte Aussage könnte mit dem Hinweis \enquote{Bringen Sie mind
 Dies würde zu einer \emph{interaktionsgesteuerten} Demokratie-Plattform führen.
 
 Ein Benutzer müsste von der dialogischen Logik nicht viel verstehen, er müsste lediglich mit der Plattform interagieren und würde so unbemerkt einen dialogischen Dialog führen.
-Natürlich könnten und müssten entsprechend ansprechende Oberflächen, die eventuell Teile der Grammatik als graphische Elemente ausdrücken entwickelt werden.
+Natürlich könnten und müssten entsprechend ansprechende Oberflächen, die eventuell Teile der Grammatik als graphische Elemente ausdrücken, entwickelt werden.
 
-\subsection{Faktencheck} % Simon
+\subsection{Faktencheck} % Simon#
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{img/faktencheck.png}
+\caption{Faktencheck mit der DSL}
+\label{faktencheck}
+\end{figure}
 
 Ein weiterer Einsatzzweck wäre ein (Echtzeit-)Faktencheck, der die partizipierenden Bürger bei der Wahrheitsfindung unterstützt.
 Dieser Ansatz passt auch zur dialogischen Logik, welche hilft die \enquote{Wahrheit zu erarbeiten} (\cite{OrtnerDL}).
@@ -323,17 +333,9 @@ Dies hätte den Effekt eines \enquote{Intelligenzverstärkers}, der jedem Bürge
 Auch die Anbindung von intelligenten Wissenssystemen (z. B. Watson \cite{Watson}), stellen interessante Möglichkeiten dar.
 Durch das Aufbrechen eines komplexen Dialogs in kleine Elementaraussagen, können auch diese Systeme effektiver arbeiten und bessere Antworten liefern.
 Insbesondere der Trend zu \emph{OpenData} könnte hier noch mehr Transparenz in Bürgerdiskussionen bringen.
-Wird z. B. die Aussage getätigt, dass die Wasserqualität des Bodensees sich verschlechtert hat, könnten dank OpenData (und Smart Cities) sofort entsprechende Daten beim Fakten-Assistent (vgl. \autoref{faktencheck}) angezeigt werden, um diese Aussage im nächsten Schritt zu widerlegen oder zu bestätigen.
+Wird z. B. die Aussage getätigt, dass sich die Wasserqualität des Bodensees verschlechtert hat, könnten dank OpenData (und Smart Cities) sofort entsprechende Daten beim Fakten-Assistent (vgl. \autoref{faktencheck}) angezeigt werden, um diese Aussage im nächsten Schritt zu widerlegen oder zu bestätigen.
 
-Wenn noch eine Ontologie mit den Begriffen der Diskussion angebunden wird (z. B. verwendete Begriffe im Raum Konstanz), dann könnte eine Art \emph{Stadt-Ontologie} erzeugt werden und Nutzer bei Diskussionsplattformen die geläufigen Begriffe eingeblendet bekommen (z. B. anstatt Bus \enquote{Roter Arnold}).
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=1\textwidth]{img/faktencheck.png}
-\caption{Faktencheck mit der DSL}
-\label{faktencheck}
-\end{figure}
-
+Wenn noch eine Ontologie mit den Begriffen der Diskussion angebunden wird (z. B. verwendete Begriffe im Raum Konstanz), dann könnte eine Art \emph{Stadt-Ontologie} erzeugt und Nutzern der Diskussionsplattformen geläufige Begriffe eingeblendet werden (z. B. anstatt Bus \enquote{Roter Arnold}).
 
 
 \section{Politischer Unterrichtsdiskurs} % Tobi
@@ -365,30 +367,17 @@ Ausblick
 
 % SORT BY AUTHOR LASTNAME
 
-\bibitem[Dem15]{DemocracyOS}
-  The DemocracyOS Foundation,
-  \emph{DemocracyOS - Power in your hands},
-  \url{http://democracyos.org},
-  besucht am 25.06.2015.
-
-\bibitem[Ecl15a]{Xtext}
-  The Eclipse Foundation,
-  \emph{Xtext - Language Development Made Easy!},
-  \url{https://eclipse.org/Xtext/},
-  besucht am 25.06.2015.
-  
-\bibitem[Ecl15b]{XtextLoadJava}
-  The Eclipse Foundation,
-  \emph{Xtext FAQ - How do I load my model in a standalone Java application?},
-  \url{http://wiki.eclipse.org/Xtext/FAQ#How_do_I_load_my_model_in_a_standalone_Java_application.C2.A0.3F},
-  besucht am 25.06.2015.
+\bibitem[Ecl12]{Spray}
+  Eclipse Labs,
+  \emph{spray - A quick way of creating Graphiti},
+  \url{https://code.google.com/a/eclipselabs.org/p/spray/},
+  besucht am 18.06.2015.   
   
 \bibitem[IBM15]{Watson}
   IBM Deutschland GmbH
   \emph{IBM Watson},
   \url{http://www-05.ibm.com/de/watson/},
   besucht am 18.06.2015.
-  
   
 \bibitem[Kes15]{GitHubCode}
   Simon Kessler, Tobias Keh,
@@ -401,7 +390,32 @@ Ausblick
   \emph{Einf{\"u}hrung in die Dialogische Informatik},
   HTWG Präsentation,
   2015.
+  
+\bibitem[Dem15]{DemocracyOS}
+  The DemocracyOS Foundation,
+  \emph{DemocracyOS - Power in your hands},
+  \url{http://democracyos.org},
+  besucht am 25.06.2015.
+  
+\bibitem[Ecl15a]{Ecore}
+  The Eclipse Foundation,
+  \emph{Eclipse Modeling Framework (EMF)},
+  \url{https://eclipse.org/modeling/emf/},
+  besucht am 26.06.2015.
 
+\bibitem[Ecl15b]{Xtext}
+  The Eclipse Foundation,
+  \emph{Xtext - Language Development Made Easy!},
+  \url{https://eclipse.org/Xtext/},
+  besucht am 25.06.2015.
+  
+\bibitem[Ecl15c]{XtextLoadJava}
+  The Eclipse Foundation,
+  \emph{Xtext FAQ - How do I load my model in a standalone Java application?},
+  \url{http://wiki.eclipse.org/Xtext/FAQ#How_do_I_load_my_model_in_a_standalone_Java_application.C2.A0.3F},
+  besucht am 25.06.2015.
+  
+  
 
 \end{thebibliography}
 \end{singlespace}
