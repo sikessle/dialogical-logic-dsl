@@ -88,15 +88,17 @@ Es erfolgt eine Beschränkung auf die Syntax der Sprache, wobei anwendungsspezif
 Inhalt dieses Kapitel sind die theoretischen Grundlagen des Projekts. Hierzu werden kurz die dialogische Logik, domänenspezifische Sprachen, Grammatiken und deren Einordnung in die Chomsky-Hierarchie und die Unterstützung durch Werkzeuge betrachtet.
 
 \section{Dialogische Logik}
-Die dialogische Logik wurde von Kuno Lorenz und Paul Lorenzen entwickelt. Sie stellt einen spieltheoretischen und semantiknahen Ansatz zur Logik dar. Dabei bildet sie, ganz im Sinne von Peter Wegners Leitgedanke \emph{"Why interaction is more powerful than algorithms"}, eine Erweiterung der formalen Logik durch die Orientierung am menschlichen Verhalten, beziehungsweise am menschlichen Dialog.
+Die dialogische Logik wurde von Kuno Lorenz und Paul Lorenzen entwickelt. Sie stellt einen spieltheoretischen und semantiknahen Ansatz zur Logik dar. Dabei bildet sie, ganz im Sinne von Peter Wegners Leitgedanke \emph{"Why interaction is more powerful than algorithms"} \cite{WegnerInteraction}, eine Erweiterung der formalen Logik durch die Orientierung am menschlichen Verhalten, beziehungsweise am menschlichen Dialog.
 Im Gegensatz zur formalen Logik erlaubt die dialogische Logik den Dialog ohne dritte Partei in Form eines Schiedsrichters.
 
-Aussagen der dialogischen Logik bestehen aus Elementaraussagen beziehungsweise aus Teilaussagen, die sich aus Elementaraussagen zusammensetzen. Aussagen werden unter Verwendung von Junktoren ($\land, \lor, \lnot, \to$) und Quantoren ($\exists, \forall$) formuliert.
+Aussagen der dialogischen Logik bestehen aus Elementaraussagen beziehungsweise aus Teilaussagen, die sich aus Elementaraussagen zusammensetzen. Aussagen werden unter Verwendung von Junktoren ($\land, \lor, \lnot, \to$) und Quantoren ($\exists, \forall$) formuliert \cite{StanfordDL}.
 
-Ein Regelwerk aus Rahmenregeln für den Dialog und Angriffs- beziehungsweise Abwehrregeln für die logischen Operatoren bilden die formale Grundlage der dialogischen Logik. Über diese werden der Ablauf des Dialogs und der Angriff beziehungsweise die Verteidigung von Elementar-, Teil- und vollständigen Aussagen genau geregelt.
+Ein Regelwerk aus Rahmenregeln für den Dialog und Angriffs- beziehungsweise Abwehrregeln für die logischen Operatoren bilden die formale Grundlage der dialogischen Logik. Über diese werden der Ablauf des Dialogs und der Angriff beziehungsweise die Verteidigung von Elementar-, Teil- und vollständigen Aussagen genau geregelt \cite{StanfordDL}.
+
+Weiterhin unterscheidet sich die dialogische Logik von der formalen Logik im Umfang der möglichen Zustände, die eine Aussage einnehmen kann. Beide können die Zustände \emph{sic} und \emph{non}, wahr und falsch, einnehmen. Aus algorithmischer (digitaler) Sicht sind diese beiden Zustände ausreichend. Die dialogische Logik hat jedoch den Anspruch, sich am menschlichen Verhalten zu orientieren und hat daher noch einen weiteren Zustand, \emph{non-liquet}. Diesen Zustand nehmen Aussagen ein, deren Gültigkeit zu einem bestimmten Zeitpunkt nicht bestimmt werden kann. Dies tritt beispielsweise auf, wenn der Wahrheitsgehalt einer (Teil-) Aussage erst zu einem späteren Zeitpunkt bestimmt werden kann, oder eine Bestätigung beziehungsweise Widerlegung noch aussteht \cite[Folie 8]{OrtnerDL}. Durch diesen dritten Zustand erhält die dialogische Logik ein vielfach größeres Einsatzspektrum und kann den menschlichen Dialog deutlich differenzierter abbilden.
 
 \section{Domänenspezifische Sprachen}
-Die Modellierung von Sachverhalten spielt sich immer in einer gewissen Fachdomäne ab. Um die Begrifflichkeiten und Eigenschaften einer solchen Domäne korrekt abbilden und einsetzen zu können, bietet sich die Verwendung einer domänenspezifischen Sprache an. Der Einsatz dieser Art von Sprachen in der Informatik bietet zum einen die Möglichkeit, dass Domänenexperten die Modellierung auch ohne Informatikkenntnisse durchführen können. Zum anderen wird der Sprachschatz genau auf den Umfang der jeweiligen Domäne begrenzt, was eine Beschränkung der mit der domänenspezifischen Sprache erstellten Modelle auf die jeweilige Domäne ermöglicht.
+Die Modellierung von Sachverhalten spielt sich immer in einer gewissen Fachdomäne ab. Um die Begrifflichkeiten und Eigenschaften einer solchen Domäne korrekt abbilden und einsetzen zu können, bietet sich die Verwendung einer domänenspezifischen Sprache an. Der Einsatz dieser Art von Sprachen in der Informatik bietet zum einen die Möglichkeit, dass Domänenexperten die Modellierung auch ohne Informatikkenntnisse durchführen können. Zum anderen wird der Sprachschatz genau auf den Umfang der jeweiligen Domäne begrenzt, was eine Beschränkung der mit der domänenspezifischen Sprache erstellten Modelle auf die jeweilige Domäne ermöglicht \cite{FowlerDSL}.
 In der Informatik gibt es drei unterschiedliche Arten domänenspezifische Sprachen zu definieren.
 \\
 \\
@@ -108,9 +110,9 @@ Bei dieser Art der Definition wird eine bereits vorhandene Sprache wie beispiels
 Hierbei wird eine vorhandene allgemeine Programmiersprache als Wirtssprache für die domänenspezifische Sprache genutzt. Die domänenspezifische Sprache wird hierbei als Fluent API programmatisch definiert. Obwohl die Modelle immer noch in der ursprünglichen Programmiersprache verfasst werden, entsteht durch diese Art der API eine auch für Laien gut verständliche Sprache. Zur Definition einer solchen API werden Methodenaufrufe wie folgt hintereinander gehängt:
 \\
 \\
-\textit{Startsymbol.Methodenaufruf1.Methodenaufruf2.Methodenaufruf3}\\
+\emph{Startsymbol.Methodenaufruf1.Methodenaufruf2.Methodenaufruf3}\\
 oder\\
-\textit{Elementaraussage(''Die Sonne scheint'').DarausFolgt(''Es ist heiß'').AussageEnde()}
+\emph{Elementaraussage(''Die Sonne scheint'').DarausFolgt(''Es ist heiß'').AussageEnde()}
 \\
 \\
 Diese Aufrufkette ist auch für Laien verständlich und kann, je nach Umfang und Schwierigkeitsgrad der Sprache, auch von diesen erstellt werden. Die Vorteile liegen bei dieser Art der Definition darin, eine bereits vorhandene Sprache zu verwenden und auf deren Tooling zurückgreifen zu können. Des Weiteren ist der Wartungs- und Entwicklungsaufwand mittelmäßig bis gering. Von Nachteil ist, dass die Wirtssprache erlernt werden muss, beziehungsweise Fachwissen bei den Anwendern vorhanden sein muss. Ein weiterer Nachteil ist, dass die Aufrufketten der Fluent API zwar gut lesbar und verständlich sind, aber trotzdem noch weit entfernt von der Flexibilität und syntaktischen Prägnanz einer vollständig erstellten Sprache sind (Externe DSL).
@@ -118,23 +120,23 @@ Diese Aufrufkette ist auch für Laien verständlich und kann, je nach Umfang und
 \\
 3. Externe DSL
 Die flexibelste und syntaktisch eleganteste Variante ist die Definition einer externen DSL. Hierbei werden konkrete und abstrakte Syntax meist in Form einer Grammatik vollständig entworfen. Dies bietet größtmögliche Freiheiten bei der Gestaltung der konkreten Syntax und somit eine bestmögliche Verständlichkeit und Anwendbarkeit durch den Benutzer einer bestimmten Domäne. Der Nachteil liegt hierbei im größeren Entwicklungs- und Wartungsaufwand. Jedoch ist dieser im Bereich der textuellen domänenspezifischen Sprachen mittlerweile durch die Verfügbarkeit von mächtigen Tools vertretbar.
-Im Projekt \textit{Logic} kommt diese Art der DSL zum Einsatz, da hier die bestmögliche Benutzbarkeit wichtigstes Kriterium ist.
+Im Projekt kommt diese Art der DSL zum Einsatz, da hier die bestmögliche Benutzbarkeit wichtigstes Kriterium ist.
 
 \section{Grammatiken} 
 Da im Zuge des Projekts eine externe DSL definiert wird, müssen konkrete und abstrakte Syntax mittels einer Grammatik definiert werden. Besonders die konkrete Syntax ist hier von besonderer Wichtigkeit, da diese die Schnittstelle zum Benutzer darstellt und somit über die Akzeptanz und den Erfolg der domänenspezifischen Sprache entscheidet.
-Grammatiken können mit Hilfe der Chomsky Hierarchie kategorisiert werden. Diese Hierarchie definiert vier Typen, welche sich durch den Umfang der durch die Grammatik erlaubten Produktionen unterscheiden.
+Grammatiken können mit Hilfe der Chomsky Hierarchie kategorisiert werden. Diese Hierarchie definiert vier Typen, welche sich durch den Umfang der durch die Grammatik erlaubten Produktionen unterscheiden \cite{Chomsky}.
 \\
 \\
 Typ 3: Reguläre Grammatiken\\
-Reguläre Ausdrücke mit genau einem Terminal auf der linken Seite und genau einem Terminal auf der rechten Seite beziehungsweise ein Terminal gefolgt von einem Nichtterminal, beispielsweise \textit{A: wB}
+Reguläre Ausdrücke mit genau einem Terminal auf der linken Seite und genau einem Terminal auf der rechten Seite beziehungsweise ein Terminal gefolgt von einem Nichtterminal, beispielsweise \emph{A: wB}
 \\
 \\
 Typ 2: Kontextfreie Grammatiken\\
-Produktionen mit genau einem Terminal auf linken Seite und Kombinationen aus Terminalen und Nichtterminalen auf der rechten Seite. \\Zum Beispiel: \textit{A: wB $\vert$ wBw $\vert$ wwBw}
+Produktionen mit genau einem Terminal auf linken Seite und Kombinationen aus Terminalen und Nichtterminalen auf der rechten Seite. \\Zum Beispiel: \emph{A: wB $\vert$ wBw $\vert$ wwBw}
 \\
 \\
 Typ 1: Kontextsensitive Grammatiken\\
-Kontextsensitive Grammatiken erweitern die Regeln der kontextfreien Grammatiken um die Möglichkeit, auf der linken Seite einer Produktion Kombinationen von Terminalen und Nichtterminalen anzugeben. Dadurch können einzelne Regeln abhängig von einem bestimmten Kontext aus Terminalen und Nichtterminalen sein. \\Beispielsweise: \textit{wAw: wB $\vert$ wBw $\vert$ wwBw}
+Kontextsensitive Grammatiken erweitern die Regeln der kontextfreien Grammatiken um die Möglichkeit, auf der linken Seite einer Produktion Kombinationen von Terminalen und Nichtterminalen anzugeben. Dadurch können einzelne Regeln abhängig von einem bestimmten Kontext aus Terminalen und Nichtterminalen sein. \\Beispielsweise: \emph{wAw: wB $\vert$ wBw $\vert$ wwBw}
 \\
 \\
 Typ 0: Allgemeine Chomsky Grammatiken\\
@@ -146,7 +148,7 @@ Sprachen mit Grammatiken, die unterhalb des Typ 2 liegen, sind für Maschinen nu
 Aussagen für die Anwendung der dialogischen Logik in natürlicher Sprache folgen jedoch einer Grammatik, die außerhalb der Chomsky Hierarchie liegt. Um diese Lücke zu schließen, ist eine domänenspezifische Sprache notwendig, die eine Typ 2 Grammatik besitzt um maschinell verarbeitbar zu sein und die eine konkrete Syntax besitzt, die möglichst nah an natürlicher Sprache liegt.
 
 \section{Werkzeugunterstützung}
-Beim Entwurf einer externen DSL muss das Rad nicht neu erfunden werden, sondern es kann auf eine breite Palette an performanten Tools zurückgegriffen werden. Zur Definition der Grammatik kommt hierbei Xtext zum Einsatz. Bei Xtext handelt es sich um ein Open-Source Projekt aus dem Umfeld des Eclipse Modeling Frameworks zur Definition textueller DSLs.
+Beim Entwurf einer externen DSL muss das Rad nicht neu erfunden werden, sondern es kann auf eine breite Palette an performanten Tools zurückgegriffen werden. Zur Definition der Grammatik kommt hierbei Xtext \cite{Xtext} zum Einsatz. Bei Xtext handelt es sich um ein Open-Source Projekt aus dem Umfeld des Eclipse Modeling Frameworks zur Definition textueller DSLs.
 Die Grammatik wird in einer leicht modifizierten Erweiterten Backus Naur Form (EBNF) angegeben. Hierbei wird die EBNF um Variablen erweitert, über die im späteren Verlauf der Tool Benutzung auf einzelne Inhalte des Modells zugegriffen werden kann. Xtext bietet eine automatische Generierung von Werkzeugen. Hierbei werden ein Parser für die domänenspezifische Sprache, ein EMF Metamodell zur Validierung von Modellen und ein Eclipse-basierter Texteditor generiert. Der Texteditor verfügt über Funktionen wie Syntax Highlighting, Code Completion und Fehlererkennung in Echtzeit.
 
 % ============================ CHAPTER
@@ -307,8 +309,8 @@ Um bewerten zu können, ob die entworfene Sprache eine Bereicherung für vorhand
 
 \section{Syntax und Semantik} % Tobi
 Bei der Definition domänenspezifischer Sprachen können zum einen konkrete und abstrakte Syntax und zum anderen statische und dynamische Semantik definiert werden.
-Während die Definition der Syntax zwingend erforderlich ist, so ist die Semantik abhängig vom konkreten Einsatzzweck der Sprache. Mit statischer und dynamischer Semantik wird festgelegt, was aus Modellen der Sprache tatsächlich entstehen soll. Hierbei handelt es sich um eine Vielzahl an Möglichkeiten, wie beispielsweise Dokumentation, Programmcode, HTML Code für eine Webseite, oder aber auch Maschinencode zum Ausführen auf einem Computer. Entsprechende Einsatzszenarien für das \textit{Logic} Projekt werden in einem späteren Kapitel genannt.
-Auch für die Semantik gibt es entsprechende Tool Unterstützung. Hierbei kommt das Xtend Projekt zum Einsatz, das mit dem Xtext Projekt in Beziehung steht. Dieses Tool ermöglicht Model-to-Model Transformationen, um Modelle in eine andere Form zu überführen, wie beispielsweise bei einer Migration. Des Weiteren ermöglicht es Model-to-Text Transformationen, als Spezialfall einer Model-to-Model Transformation. Hierbei wird ein Modell in Text überführt. Bei diesem Text kann es sich wie bereits erwähnt um Erzeugnisse angefangen von Programmcode bis hin zu Dokumentation handeln.
+Während die Definition der Syntax zwingend erforderlich ist, so ist die Semantik abhängig vom konkreten Einsatzzweck der Sprache. Mit statischer und dynamischer Semantik wird festgelegt, was aus Modellen der Sprache tatsächlich entstehen soll. Hierbei handelt es sich um eine Vielzahl an Möglichkeiten, wie beispielsweise Dokumentation, Programmcode, HTML Code für eine Webseite, oder aber auch Maschinencode zum Ausführen auf einem Computer. Entsprechende Einsatzszenarien für das Projekt werden in einem späteren Kapitel genannt.
+Auch für die Semantik gibt es entsprechende Tool Unterstützung. Hierbei kommt das Xtend Projekt \cite{Xtend} zum Einsatz, das mit dem Xtext Projekt in Beziehung steht. Dieses Tool ermöglicht Model-to-Model Transformationen, um Modelle in eine andere Form zu überführen, wie beispielsweise bei einer Migration. Des Weiteren ermöglicht es Model-to-Text Transformationen, als Spezialfall einer Model-to-Model Transformation. Hierbei wird ein Modell in Text überführt. Bei diesem Text kann es sich wie bereits erwähnt um Erzeugnisse angefangen von Programmcode bis hin zu Dokumentation handeln.
 
 \section{Sic, non und non-liquet} % Tobi
 Die für die dialogische Logik charakteristischen Zustände sic, non und non-liquet sind Teil der Semantik und nicht der Syntax. Wie bereits im Abschnitt Syntax und Semantik erwähnt ist die Semantik vom konkreten Einsatzzweck des Projekts abhängig. Auf Grund dessen sind die Zustände der dialogischen Logik im bisherigen Projekt nicht in Erscheinung getreten. Würde das Projekt beispielsweise für eine programmatische Lösung verwendet werden, so könnten aus den Modellen entsprechender Programmcode generiert werden, der die drei Zustände von Aussagen abbildet und verwaltet.
@@ -386,22 +388,22 @@ Wenn noch eine Ontologie mit den Begriffen der Diskussion angebunden wird (z. B.
 
 \section{Politischer Unterrichtsdiskurs} % Tobi
 Bei der Verwendung formaler oder auch dialogischer Logik liegt eine mathematische Betrachtung, bedingt durch die mathematische Natur der Logik, sehr nahe. 
-Die dialogische Logik bildet im Projekt \textit{Logic} das logische Grundgerüst für den Dialog. Der Fokus liegt besonders auf dem Dialog in der Smart City, durch den der Bürger an politischen Dialogen und Diskussionen beteiligt werden soll.
-Da die dialogische Logik in einem politischen Kontext betrachtet wird, unterscheidet sich das Projekt von bereits vorhandenen Projekten, wie beispielsweise das von Herrn Görz (\textit{Dialogische Logik und mathematischer Unterrichtsdiskurs}).
-\textit{Logic} könnte im Umfeld des politischen Unterrichtsdiskurses zum Einsatz kommen, um politische Diskussionen zu analysieren, politische Aussagen kritisch zu hinterfragen und aktiv an politischen Diskussionen teilzunehmen und Schülern beziehungsweise Studierenden somit eine bestmögliche Lernerfahrung zu bieten.
+Die dialogische Logik bildet im Projekt \emph{Logic} das logische Grundgerüst für den Dialog. Der Fokus liegt besonders auf dem Dialog in der Smart City, durch den der Bürger an politischen Dialogen und Diskussionen beteiligt werden soll.
+Da die dialogische Logik in einem politischen Kontext betrachtet wird, unterscheidet sich das Projekt von bereits vorhandenen Projekten, wie beispielsweise das von Herrn Görz (\emph{Dialogische Logik und mathematischer Unterrichtsdiskurs})\cite{GoerzUnterrichtsdiskurs}.
+\emph{Logic} könnte im Umfeld des politischen Unterrichtsdiskurses zum Einsatz kommen, um politische Diskussionen zu analysieren, politische Aussagen kritisch zu hinterfragen und aktiv an politischen Diskussionen teilzunehmen und Schülern beziehungsweise Studierenden somit eine bestmögliche Lernerfahrung zu bieten.
 
 % ============================ CHAPTER
 \chapter{Fazit und Ausblick} % Tobi
-Zusammenfassend kann festgestellt werden, dass es sich bei \textit{Logic} um einen ersten Versuch handelt, die dialogische Logik mit natürlicher Sprache in Verbindung zu bringen.
+Zusammenfassend kann festgestellt werden, dass es sich bei \emph{Logic} um einen ersten Versuch handelt, die dialogische Logik mit natürlicher Sprache in Verbindung zu bringen.
 Dies ist besonders interessant im Kontext der Smart City, da dieses Thema, vor dem Hintergrund wachsender Urbanisierung, stetigem technischen Fortschritt und daraus resultierend einem Bedürfnis nach neuen Konzepten zur Beteiligung der Bürger, sehr zukunftsträchtig ist.
 
-Aktuell ist \textit{Logic}  ein \textit{Proof of Concept}, wodurch gezeigt wurde, dass dialogische Logik prinzipiell auf diesem Gebiet eingesetzt werden kann und ein mächtiges Instrument zur gleichgestellten Beteiligung aller Bürger darstellt.
-In aktuelle Projekte wie beispielsweise \textit{Liquid Democracy} wäre \textit{Logic} integrierbar, allerdings besteht in einigen Punkten noch Verbesserungspotential.
+Aktuell ist das Projekt ein \textit{Proof of Concept}, wodurch gezeigt wurde, dass dialogische Logik prinzipiell auf diesem Gebiet eingesetzt werden kann und ein mächtiges Instrument zur gleichgestellten Beteiligung aller Bürger darstellt.
+In aktuelle Projekte wie beispielsweise \emph{Liquid Democracy} \cite{PiratenLiquidDemo} wäre \emph{Logic} integrierbar, allerdings besteht in einigen Punkten noch Verbesserungspotential.
 So beinhaltet das Projekt lediglich den syntaktischen Anteil, der semantische Anteil liegt jeweils im Umfang der Umsetzung des tatsächlichen Projekts. Daher ist der Aufwand bei der Entwicklung und Wartung größer als bei aktuellen Systemen. Dieser ergibt sich auch aus dem Einsatz von Tools der modellgetriebenen Softwareentwicklung.
 Des Weiteren bestehen noch gewisse Einschränkungen bei den Formulierungen der Aussagen, da natürliche Sprache nicht ohne weiteres von Maschinen verstanden werden kann. Hierbei ist besonders die konkrete Syntax, die die Schnittstelle zum Benutzer darstellt, zu nennen. Dieser kommt eine besondere Rolle zu und bedarf, je nach Möglichkeit des maschinellen Verständnisses natürlicher Sprache, noch einem gewissen Weiterentwicklungsaufwand. Der Fokus liegt dabei auf einer möglichst geringen Einschränkung erlaubter Formulierungen, um die Benutzung durch den Bürger so einfach wie möglich zu gestalten.
 
-Diese Einschränkung könnte durch den Einsatz eines Systems wie \textit{Watson} von IBM deutlich verringert werden, da dieses die Qualität beim Verständnis natürlicher Sprache deutlich erhöhen würde und somit die Freiheiten bei den erlaubten Formulierungen deutlich steigern würde. Zudem würde sich mittels eines solchen Systems das weite Feld der Verwendung gesprochener Aussagen öffnen.
-Systeme, die auf der Grundlage der dialogischen Logik aufbauen, haben das Potential als Bindeglied zwischen digitaler Beteiligung und deren technischen Hürden auf der einen Seite und der breiten Masse der Bürger ohne speziellen technischen Bildungshintergrund auf der anderen Seite zu fungieren. Diese könnten als eine Art Katalysator der Demokratie 2.0 dienen, denn neue Formen des Zusammenlebens erfordern neue Formen der Beteiligung. Hierbei stellen Systeme wie \textit{Logic}, mit ihren aktuell noch etwas starken Einschränkungen, nur einen ersten Schritt dar. Das Ziel ist hierbei eine nahtlose Integration der dialogischen Logik als Grundlage aller Dialoge und Diskussionen.
+Diese Einschränkung könnte durch den Einsatz eines Systems wie \emph{Watson} \cite{Watson} von IBM deutlich verringert werden, da dieses die Qualität beim Verständnis natürlicher Sprache deutlich erhöhen würde und somit die Freiheiten bei den erlaubten Formulierungen deutlich steigern würde. Zudem würde sich mittels eines solchen Systems das weite Feld der Verwendung gesprochener Aussagen öffnen.
+Systeme, die auf der Grundlage der dialogischen Logik aufbauen, haben das Potential als Bindeglied zwischen digitaler Beteiligung und deren technischen Hürden auf der einen Seite und der breiten Masse der Bürger ohne speziellen technischen Bildungshintergrund auf der anderen Seite zu fungieren. Diese könnten als eine Art Katalysator der Demokratie 2.0 dienen, denn neue Formen des Zusammenlebens erfordern neue Formen der Beteiligung. Hierbei stellen Systeme wie \emph{Logic}, mit ihren aktuell noch etwas starken Einschränkungen, nur einen ersten Schritt dar. Das Ziel ist hierbei eine nahtlose Integration der dialogischen Logik als Grundlage aller Dialoge und Diskussionen.
 Dies würde zu einer Steigerung der Effizienz bereits vorhandener Systeme beitragen und deren Akzeptanz deutlich erhöhen.
 Zudem könnte so der Generation-Gap zwischen Digital Natives und älteren Mitbürgern möglichst stark verringert, wenn nicht sogar beseitigt werden.
 
@@ -422,11 +424,53 @@ Die daraus resultierende Dynamik könnten genutzt werden, um dem politischen Bü
 
 % SORT BY AUTHOR LASTNAME
 
+\bibitem[Dem15]{DemocracyOS}
+  The DemocracyOS Foundation,
+  \emph{DemocracyOS - Power in your hands},
+  \url{http://democracyos.org},
+  besucht am 25.06.2015.
+
 \bibitem[Ecl12]{Spray}
   Eclipse Labs,
   \emph{spray - A quick way of creating Graphiti},
   \url{https://code.google.com/a/eclipselabs.org/p/spray/},
-  besucht am 18.06.2015.   
+  besucht am 18.06.2015.
+
+\bibitem[Ecl15a]{Ecore}
+  The Eclipse Foundation,
+  \emph{Eclipse Modeling Framework (EMF)},
+  \url{https://eclipse.org/modeling/emf/},
+  besucht am 26.06.2015.
+
+\bibitem[Ecl15b]{Xtext}
+  The Eclipse Foundation,
+  \emph{Xtext - Language Development Made Easy!},
+  \url{https://eclipse.org/Xtext/},
+  besucht am 25.06.2015.
+  
+\bibitem[Ecl15c]{XtextLoadJava}
+  The Eclipse Foundation,
+  \emph{Xtext FAQ - How do I load my model in a standalone Java application?},
+  \url{http://wiki.eclipse.org/Xtext/FAQ#How_do_I_load_my_model_in_a_standalone_Java_application.C2.A0.3F},
+  besucht am 25.06.2015.
+
+\bibitem[Ecl15d]{Xtend}
+  The Eclipse Foundation,
+  \emph{Xtend - Modernized Java},
+  \url{https://eclipse.org/xtend/},
+  besucht am 30.06.2015.
+
+\bibitem[Fow10]{FowlerDSL}
+  Martin Fowler,
+  \emph{Domain-Specific Languages},
+  Addison-Wesley Professional,
+  1 edition, 2010.
+
+\bibitem[Goe05]{GoerzUnterrichtsdiskurs}
+  G{\"u}nther G{\"o}rz,
+  \emph{Dialogische Logik und mathematischer Unterrichtsdiskurs},
+  Universit{\"a}t Erlangen-N{\"u}rnberg, Institut f{\"u}r Informatik,
+  2005.
   
 \bibitem[IBM15]{Watson}
   IBM Deutschland GmbH
@@ -445,32 +489,30 @@ Die daraus resultierende Dynamik könnten genutzt werden, um dem politischen Bü
   \emph{Einf{\"u}hrung in die Dialogische Informatik},
   HTWG Präsentation,
   2015.
-  
-\bibitem[Dem15]{DemocracyOS}
-  The DemocracyOS Foundation,
-  \emph{DemocracyOS - Power in your hands},
-  \url{http://democracyos.org},
-  besucht am 25.06.2015.
-  
-\bibitem[Ecl15a]{Ecore}
-  The Eclipse Foundation,
-  \emph{Eclipse Modeling Framework (EMF)},
-  \url{https://eclipse.org/modeling/emf/},
-  besucht am 26.06.2015.
 
-\bibitem[Ecl15b]{Xtext}
-  The Eclipse Foundation,
-  \emph{Xtext - Language Development Made Easy!},
-  \url{https://eclipse.org/Xtext/},
-  besucht am 25.06.2015.
+\bibitem[Pir15]{PiratenLiquidDemo}
+  Wiki der Piratenpartei Deutschland,
+  \emph{Liquid Democracy - Piratenwiki},
+  \url{https://wiki.piratenpartei.de/Liquid_Democracy},
+  besucht am 30.06.2015.
+
+\bibitem[Sim11]{Chomsky}
+  Ruhr-Universit{\"a}t Bochum,
+  \emph{Die Chomsky-Hierarchie},
+  \url{http://www.ruhr-uni-bochum.de/lmi/lehre/materialien/ti/vorlesung/kap1-1.pdf},
+  besucht am 30.06.2015.
+
+\bibitem[Stan09]{StanfordDL}
+  Stanford - Center for the Study of Language and Information,
+  \emph{Dialogical Logic (Stanford Encyclopedia of Philosophy},
+  \url{http://plato.stanford.edu/entries/logic-dialogical/},
+  besucht am 30.06.2015.
   
-\bibitem[Ecl15c]{XtextLoadJava}
-  The Eclipse Foundation,
-  \emph{Xtext FAQ - How do I load my model in a standalone Java application?},
-  \url{http://wiki.eclipse.org/Xtext/FAQ#How_do_I_load_my_model_in_a_standalone_Java_application.C2.A0.3F},
-  besucht am 25.06.2015.
-  
-  
+\bibitem[Weg97]{WegnerInteraction}
+  Peter Wegner,
+  \emph{Why Interaction Is More Powerful Than Algorithms},
+  Communications of the ACM.,
+  May 1997.
 
 \end{thebibliography}
 \end{singlespace}
